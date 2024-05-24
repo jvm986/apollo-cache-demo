@@ -1,0 +1,41 @@
+{
+  "name": "service",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "install:cdk": "cd cdk && npm install",
+    "install:all": "npm install && npm run install:server && npm run install:client && npm run install:cdk",
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "build:client-dev": "cd client && npm run build-dev",
+    "build:client-prd": "cd client && npm run build-prd",
+    "build:all": "npm run build:server && npm run build:client",
+    "build:all-dev": "npm run build:server && npm run build:client-dev",
+    "build:all-prd": "npm run build:server && npm run build:client-prd",
+    "start:server": "export $(cat .env | xargs) && cd server && npm run start",
+    "start:client": "cd client && npm run dev",
+    "start:all": "concurrently -n \"server,client\" \"npm run start:server\" \"npm run start:client\"",
+    "generate:client": "cd client && npm run generate",
+    "generate:server": "cd server && npm run generate",
+    "generate:all": "npm run generate:server && npm run generate:client",
+    "cdk:deploy-dev": "npm run build:all-dev && cd cdk && STAGE=dev npm run cdk deploy",
+    "cdk:deploy-prd": "npm run build:all-prd && cd cdk && STAGE=prd npm run cdk deploy",
+    "test:client": "cd client && npm run test",
+    "test:server": "cd server && npm run test",
+    "test:cdk": "cd cdk && npm run test",
+    "test:all": "npm run test:client && npm run test:server",
+    "lint:client": "cd client && npm run lint",
+    "lint:server": "cd server && npm run lint",
+    "lint:all": "npm run lint:client && npm run lint:server",
+    "vitest": "vitest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "jsdom": "^24.0.0",
+    "vitest": "^1.5.0"
+  }
+}

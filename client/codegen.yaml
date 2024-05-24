@@ -1,0 +1,22 @@
+schema: '../graphql/schema.graphql'
+documents:
+  - 'src/**/*.graphql'
+generates:
+  './src/__generated__/':
+    preset: 'client'
+    presetConfig:
+      gqlTagName: 'gql'
+  './src':
+    preset: 'near-operation-file'
+    presetConfig:
+      extension: '.hook.ts'
+      baseTypesPath: './__generated__/graphql'
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+config:
+  scalars:
+    DateTimeISO: Date

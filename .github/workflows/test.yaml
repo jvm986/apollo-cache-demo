@@ -1,0 +1,32 @@
+name: Test
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Install Dependencies
+        run: |
+          npm run install:all
+          npm install -g esbuild
+
+      - name: Build
+        run: npm run build:all-dev
+
+      - name: Lint
+        run: npm run lint:all
+
+      - name: Test
+        run: npm run vitest

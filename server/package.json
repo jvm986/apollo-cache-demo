@@ -1,0 +1,45 @@
+{
+  "name": "server",
+  "version": "0.6.0",
+  "description": "",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "generate": "graphql-codegen --config codegen.yaml",
+    "build": "npm run generate",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "build-local": "npm run generate && rm -rf dist && esbuild src/index.ts --bundle --platform=node --target=node18 --outfile=dist/index.js",
+    "start": "npm run build-local && node dist/index.js",
+    "test": "vitest --watch=false",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.1",
+    "@as-integrations/aws-lambda": "^3.1.0",
+    "@aws-lambda-powertools/logger": "^2.0.2",
+    "@aws-lambda-powertools/metrics": "^2.0.2",
+    "@aws-lambda-powertools/tracer": "^2.0.2",
+    "@aws-sdk/client-dynamodb": "^3.533.0",
+    "@aws-sdk/client-timestream-query": "^3.533.0",
+    "graphql": "^16.8.1",
+    "graphql-scalars": "^1.22.5",
+    "jsonwebtoken": "^9.0.2",
+    "pino": "^8.19.0",
+    "prettier": "^3.2.5"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/typescript": "4.0.6",
+    "@graphql-codegen/typescript-resolvers": "4.0.6",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
+    "esbuild": "^0.20.2",
+    "eslint": "^8.57.0",
+    "jsdom": "^24.0.0",
+    "typescript": "^5.4.2"
+  }
+}

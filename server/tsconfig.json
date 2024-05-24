@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "rootDirs": ["src"],
+    "outDir": "build",
+    "lib": ["es2020"],
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "types": ["node"]
+  },
+  "exclude": ["typescript-typedefs.ts", "codegen.ts", "src/handler.ts"]
+}

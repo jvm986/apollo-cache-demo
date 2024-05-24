@@ -1,0 +1,49 @@
+name: Deploy CDK APP
+
+concurrency:
+  group: deploy-cdk-app
+
+on:
+  push:
+    branches:
+      - main
+  release:
+    types:
+      - published
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ github.ref == 'refs/heads/main' && 'DEV' || startsWith(github.ref, 'refs/tags/v') && 'PRD' }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Install Dependencies
+        run: |
+          npm run install:all
+          npm install -g esbuild
+
+      - name: Build
+        run: npm run build:all-${{ github.ref == 'refs/heads/main' && 'dev' || startsWith(github.ref, 'refs/tags/v') && 'prd' }}
+
+      - name: Lint
+        run: npm run lint:all
+
+      - name: Test
+        run: npm run test:all
+
+      - name: Configure Environment
+        run: |
+          echo "AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> $GITHUB_ENV
+          echo "STAGE=${{ github.ref == 'refs/heads/main' && 'DEV' || startsWith(github.ref, 'refs/tags/v') && 'PRD' }}" >> $GITHUB_ENV
+
+      - name: Deploy
+        run: cd cdk && npm run cdk deploy -- --require-approval never

@@ -1,0 +1,14 @@
+overwrite: true
+schema: '../graphql/schema.graphql'
+generates:
+  src/__generated__/graphql.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-resolvers'
+      - 'typescript-typedefs.cjs'
+config:
+  useIndexSignature: true
+  contextType: '../server#ServerContext'
+  defaultMapper: 'Partial<{T}>'
+  scalars:
+    DateTimeISO: Date
