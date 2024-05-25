@@ -11,4 +11,3 @@ cdk.out
 .DS_Store
 .vscode
 .secrets
-.env

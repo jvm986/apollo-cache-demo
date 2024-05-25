@@ -13,7 +13,7 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 const documents = {
-    "query HomePage {\n  home\n}": types.HomePageDocument,
+    "query Time1And2WithId {\n  time {\n    id\n    time1\n    time2\n  }\n}\n\nquery Time1And2WithoutId {\n  time {\n    time1\n    time2\n  }\n}\n\nquery Time1WithId {\n  time {\n    id\n    time1\n  }\n}\n\nquery Time1WithoutId {\n  time {\n    time1\n  }\n}\n\nquery Time2WithId {\n  time {\n    id\n    time2\n  }\n}\n\nquery Time2WithoutId {\n  time {\n    time2\n  }\n}": types.Time1And2WithIdDocument,
 };
 
 /**
@@ -33,7 +33,7 @@ export function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "query HomePage {\n  home\n}"): (typeof documents)["query HomePage {\n  home\n}"];
+export function gql(source: "query Time1And2WithId {\n  time {\n    id\n    time1\n    time2\n  }\n}\n\nquery Time1And2WithoutId {\n  time {\n    time1\n    time2\n  }\n}\n\nquery Time1WithId {\n  time {\n    id\n    time1\n  }\n}\n\nquery Time1WithoutId {\n  time {\n    time1\n  }\n}\n\nquery Time2WithId {\n  time {\n    id\n    time2\n  }\n}\n\nquery Time2WithoutId {\n  time {\n    time2\n  }\n}"): (typeof documents)["query Time1And2WithId {\n  time {\n    id\n    time1\n    time2\n  }\n}\n\nquery Time1And2WithoutId {\n  time {\n    time1\n    time2\n  }\n}\n\nquery Time1WithId {\n  time {\n    id\n    time1\n  }\n}\n\nquery Time1WithoutId {\n  time {\n    time1\n  }\n}\n\nquery Time2WithId {\n  time {\n    id\n    time2\n  }\n}\n\nquery Time2WithoutId {\n  time {\n    time2\n  }\n}"];
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {};

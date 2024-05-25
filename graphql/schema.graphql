@@ -1,3 +1,9 @@
 type Query {
-  home: String!
+  time: TheTime!
+}
+
+type TheTime {
+  id: ID!
+  time1: String!
+  time2: String!
 }

@@ -18,7 +18,14 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  home: Scalars['String']['output'];
+  time: TheTime;
+};
+
+export type TheTime = {
+  __typename?: 'TheTime';
+  id: Scalars['ID']['output'];
+  time1: Scalars['String']['output'];
+  time2: Scalars['String']['output'];
 };
 
 export type WithIndex<TObject> = TObject & Record<string, any>;
@@ -94,27 +101,39 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Boolean: ResolverTypeWrapper<Partial<Scalars['Boolean']['output']>>;
+  ID: ResolverTypeWrapper<Partial<Scalars['ID']['output']>>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Partial<Scalars['String']['output']>>;
+  TheTime: ResolverTypeWrapper<Partial<TheTime>>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Boolean: Partial<Scalars['Boolean']['output']>;
+  ID: Partial<Scalars['ID']['output']>;
   Query: {};
   String: Partial<Scalars['String']['output']>;
+  TheTime: Partial<TheTime>;
 }>;
 
 export type QueryResolvers<ContextType = ServerContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  home?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  time?: Resolver<ResolversTypes['TheTime'], ParentType, ContextType>;
+}>;
+
+export type TheTimeResolvers<ContextType = ServerContext, ParentType extends ResolversParentTypes['TheTime'] = ResolversParentTypes['TheTime']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  time1?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  time2?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = ServerContext> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;
+  TheTime?: TheTimeResolvers<ContextType>;
 }>;
 
 
 
 export const typeDefs = `#graphql
-schema{query:Query}type Query{home:String!}
+schema{query:Query}type Query{time:TheTime!}type TheTime{id:ID!time1:String!time2:String!}
 `;

@@ -1,0 +1,40 @@
+query Time1And2WithId {
+  time {
+    id
+    time1
+    time2
+  }
+}
+
+query Time1And2WithoutId {
+  time {
+    time1
+    time2
+  }
+}
+
+query Time1WithId {
+  time {
+    id
+    time1
+  }
+}
+
+query Time1WithoutId {
+  time {
+    time1
+  }
+}
+
+query Time2WithId {
+  time {
+    id
+    time2
+  }
+}
+
+query Time2WithoutId {
+  time {
+    time2
+  }
+}

@@ -1,8 +1,6 @@
 import { MockedProvider } from '@apollo/client/testing';
-import '@mantine/charts/styles.css';
 import { MantineProvider, useMantineColorScheme } from '@mantine/core';
 import '@mantine/core/styles.css';
-import '@mantine/dates/styles.css';
 import { addons } from '@storybook/preview-api';
 import React, { useEffect } from 'react';
 import {

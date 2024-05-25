@@ -25,7 +25,9 @@ describe('resolvers', () => {
         {
           query: gql`
             query {
-              home
+              time {
+                id
+              }
             }
           `,
         },
@@ -35,7 +37,7 @@ describe('resolvers', () => {
       );
 
       assert(response.body.kind === 'single');
-      expect(response.body.singleResult.data.home).toEqual('Hello World!');
+      expect(response.body.singleResult.data.time).toEqual({ id: '1' });
     });
   });
 });
