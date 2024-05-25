@@ -5,12 +5,12 @@ npm install:all
 npm start:all
 ```
 
-This repository is intended to demonstrate an issue with Apollo Cache where if a query intended to be cached without an `id` all queries of that type in the cache will be refetched.
+This repository is intended to demonstrate an issue with Apollo Cache where if a query intended to be cached without an `id` fires, all queries related to that type in the cache will be refetched.
 <video src='https://github.com/jvm986/apollo-cache-demo/assets/20093619/150be230-b9c6-46fe-a91e-c23eebe239df' />
 
 
 
-This is unrelated to the issue which will raise a warning in a similar situation. Shown here for clarity.
+This is unrelated to the issue which will raise a warning in a similar situation - when an item _with_ an `id` is added to the cache where an item _without_ an `id` already exists. Shown here for clarity.
 <video src='https://github.com/jvm986/apollo-cache-demo/assets/20093619/09da0b05-0cc9-4d12-a53e-c425df48af0a' />
 
 
