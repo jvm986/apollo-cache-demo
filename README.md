@@ -1,8 +1,8 @@
 # Apollo Cache Demo
 
 ```bash
-npm install:all
-npm start:all
+npm run install:all
+npm run start:all
 ```
 
 This repository is intended to demonstrate an issue with Apollo Cache where if a query intended to be cached without an `id` fires, all queries related to that type in the cache will be refetched.
